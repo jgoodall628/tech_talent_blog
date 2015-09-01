@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3><%= @blog_post.title.titleize %></h1>
+  </div>
+  <div class="panel-body">
+    <p>
+      by <%= @blog_post.author.titleize %>
+
+    </p>
+    <p>
+      Published: <%= @blog_post.created_at.strftime("%m/%d/%y %I:%M %P") %>
+    </p>
+    <p>
+      <%= @blog_post.blog_entry %>
+    </p>
+  </div>
+  <div class="panel-footer">
+    <%= link_to 'Edit', edit_blog_post_path(@blog_post), class: "btn btn-warning" %>
+  </div>
+
+</div>
+
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h5>Make a comment.</h5>
+  </div>
+  <div class="panel-body">
+    <%= render "comments/form" %>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h5>Comments</h5>
+  </div>
+  <% @blog_post.comments.each do |comment| %>
+    <div class="panel-body">
+      <p>
+        <strong><%= comment.author %></strong> said:
+      </p>
+      <p>
+        <%= comment.comment_entry %>
+      </p>
+      <p>
+        <%=comment.created_at.strftime("%m/%d/%y %I:%M %P") %>
+      </p>
+    </div>
+  <% end %>
+</div>
+<%= link_to 'Back', blog_posts_path, class: "btn btn-primary" %>
