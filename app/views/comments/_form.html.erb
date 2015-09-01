@@ -12,13 +12,12 @@
   <% end %>
 
   <div class="field form-group">
-    <%= f.text_field :author, class: "form-control", placeholder: "Author" %>
-  </div>
-  <div class="field form-group">
+    <%= f.label :comment_entry, class: "sr-only" %>
     <%= f.text_area :comment_entry, rows: 10, class: "form-control", placeholder: "Comment" %>
   </div>
   <div class="field  form-group cant-see-me">
     <%= f.number_field :blog_post_id, value: @blog_post.id %>
+    <%= f.number_field :user_id, value: current_user.id %>
   </div>
   <div class="actions">
     <%= f.submit %>
