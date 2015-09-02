@@ -5,19 +5,21 @@
   </div>
   <div class="panel-body">
     <p>
-      by <strong><%= @blog_post.user.email %></strong>
+      by <strong><%= link_to @blog_post.user.username, user_posts_path(id: @blog_post.user.id) %></strong>
 
     </p>
     <p>
-      Published: <%= @blog_post.created_at.strftime("%m/%d/%y %I:%M %P") %>
+      <span class="posted-at">Published: <%= @blog_post.created_at.strftime("%m/%d/%y %I:%M %P") %></span>
     </p>
     <p>
       <%= @blog_post.blog_entry %>
     </p>
   </div>
+  <% if current_user.id == @blog_post.user_id %>
   <div class="panel-footer">
     <%= link_to 'Edit', edit_blog_post_path(@blog_post), class: "btn btn-warning" %>
   </div>
+  <% end %>
 
 </div>
 
@@ -36,7 +38,7 @@
   <% @blog_post.comments.each do |comment| %>
     <div class="panel-body">
       <p>
-        <strong><%= comment.user.email %></strong> said:
+        <strong><%= link_to comment.user.username, user_posts_path(id: comment.user.id) %></strong> said:
       </p>
       <p>
         <%= comment.comment_entry %>

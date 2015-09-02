@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= link_to blog_post.title.titleize, blog_post %>
+  </div>
+  <div class="panel-body">
+    by <%= link_to blog_post.user.username, user_posts_path(id: blog_post.user.id) %><br>
+    <p>
+      <span class="posted-at">Published: <%= blog_post.created_at.strftime("%m/%d/%y %I:%M %P") %></span>
+    </p>
+    <p>
+      <%= truncate(blog_post.blog_entry, length: 250) %><%= link_to "[Read More]", blog_post %>
+    </p>
+
+  </div>
+  <% if current_user.id == blog_post.user_id %>
+    <div class="panel-footer">
+      <%= link_to "Edit", edit_blog_post_path(blog_post), class: "btn btn-warning" %>
+      <%= link_to "Delete", blog_post, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+    </div>
+  <% end %>
+</div>

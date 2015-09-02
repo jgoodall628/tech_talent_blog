@@ -17,5 +17,12 @@
   display: none;
 }
 body {
-  background: #D2E0D7;
+  background: #688A74;
+}
+.container {
+  background: rgba(255,255, 255, 0.8)
+}
+.posted-at {
+  font-style: italic;
+  font-size: 12px;
 }
